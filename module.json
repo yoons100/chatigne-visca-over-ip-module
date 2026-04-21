@@ -1,0 +1,125 @@
+{
+  "name": "VISCA over IP",
+  "type": "UDP",
+  "path": "Protocol",
+  "version": "1.2.0",
+  "description": "Simple VISCA over IP preset recall module for PTZ cameras",
+  "hasInput": false,
+  "hasOutput": true,
+  "hideDefaultCommands": true,
+  "hideDefaultParameters": [
+    "messageStructure",
+    "protocol",
+    "firstValueIsTheName",
+    "autoAdd"
+  ],
+  "defaults": {
+    "protocol": "Raw",
+    "autoAdd": false,
+    "output": {
+      "local": false,
+      "remoteHost": "127.0.0.1",
+      "remotePort": 52381
+    }
+  },
+  "parameters": {
+    "Use Visca Ip Header": {
+      "type": "Boolean",
+      "default": true
+    },
+    "Command Port": {
+      "type": "Integer",
+      "min": 1,
+      "max": 65535,
+      "default": 52381
+    },
+    "Debug Log": {
+      "type": "Boolean",
+      "default": true
+    },
+    "Camera 1 Address": {
+      "type": "String",
+      "default": "192.168.0.241"
+    },
+    "Camera 2 Address": {
+      "type": "String",
+      "default": ""
+    },
+    "Camera 3 Address": {
+      "type": "String",
+      "default": ""
+    },
+    "Camera 4 Address": {
+      "type": "String",
+      "default": ""
+    }
+  },
+  "commands": {
+    "Recall Preset": {
+      "menu": "",
+      "callback": "recallPreset",
+      "parameters": {
+        "Camera Index": {
+          "type": "Integer",
+          "min": 1,
+          "max": 4,
+          "default": 1
+        },
+        "Preset Number": {
+          "type": "Integer",
+          "min": 1,
+          "max": 255,
+          "default": 1
+        }
+      }
+    },
+    "Recall Preset All": {
+      "menu": "",
+      "callback": "recallPresetAll",
+      "parameters": {
+        "Preset Number": {
+          "type": "Integer",
+          "min": 1,
+          "max": 255,
+          "default": 1
+        }
+      }
+    },
+    "Reset Sequence Number": {
+      "menu": "",
+      "callback": "resetSequenceNumber",
+      "parameters": {
+        "Camera Index": {
+          "type": "Integer",
+          "min": 1,
+          "max": 4,
+          "default": 1
+        }
+      }
+    },
+    "Reset Sequence Number All": {
+      "menu": "",
+      "callback": "resetSequenceNumberAll",
+      "parameters": {}
+    },
+    "Send Raw Visca": {
+      "menu": "",
+      "callback": "sendRawVisca",
+      "parameters": {
+        "Camera Index": {
+          "type": "Integer",
+          "min": 1,
+          "max": 4,
+          "default": 1
+        },
+        "Bytes Hex Space Separated": {
+          "type": "String",
+          "default": "81 01 04 3F 02 00 FF"
+        }
+      }
+    }
+  },
+  "scripts": [
+    "VISCA-IP.js"
+  ]
+}
